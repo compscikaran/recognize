@@ -22,6 +22,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('',upload.views.home,name = 'home'),
     path('about/',upload.views.about,name = 'about'),
+    path('upload/',upload.views.scan,name='scan')
 ]
 
 

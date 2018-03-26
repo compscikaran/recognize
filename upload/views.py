@@ -1,9 +1,24 @@
-from django.shortcuts import render
-import datetime
+from django.shortcuts import render,redirect
+from django.utils import timezone
+from django.contrib.auth.decorators import login_required
+from .models import Scan
 # Create your views here.
 def home(request):
-    date = datetime.datetime.now()
-    return render(request,'base.html',{'date':date})
+    return render(request,'base.html')
 
 def about(request):
-    return render(request,'login.html')
+    return render(request,'about.html')
+
+def scan(request):
+    if request.method == 'POST':
+        if request.POST['name'] and request.FILES['image']:
+            scan = Scan()
+            scan.name = request.POST['name']
+            scan.image = request.FILES['image']
+            scan.datestamp = timezone.datetime.now()
+            scan.save()
+            return redirect('home')
+        else:
+            return render(request,'scan.html',{'error': 'All fields are required'})    
+    else:
+        return render(request,'scan.html')
