@@ -2,6 +2,7 @@ from django.shortcuts import render,redirect
 from django.utils import timezone
 from django.contrib.auth.decorators import login_required
 from .models import Scan
+from .tessfuncs import getText,getImage
 # Create your views here.
 def home(request):
     return render(request,'base.html')
@@ -17,8 +18,14 @@ def scan(request):
             scan.image = request.FILES['image']
             scan.datestamp = timezone.datetime.now()
             scan.save()
-            return redirect('home')
+            image = getImage(scan.image.url)
+            text = imageText(image)
+            return redirect('editor',{'ret':text})
         else:
             return render(request,'scan.html',{'error': 'All fields are required'})    
     else:
         return render(request,'scan.html')
+
+def editor(request,text):
+    return render(request,'editor.html',{'text':text})
+
