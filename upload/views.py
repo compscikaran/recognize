@@ -18,15 +18,13 @@ def scan(request):
             scan.name = request.POST['name']
             scan.image = request.FILES['image']
             scan.datestamp = timezone.datetime.now()
+            scan.language = request.POST['language']
             scan.save()
             image = getImage(os.path.dirname(os.path.dirname(os.path.abspath(__file__))) + scan.image.url)
-            text = imageText(image)
-            return redirect('editor',{'ret':text})
+            text = imageText(image,scan.language)
+            return render(request,'editor.html',{'ret':text})
         else:
             return render(request,'scan.html',{'error': 'All fields are required'})    
     else:
         return render(request,'scan.html')
-
-def editor(request):
-    return render(request,'editor.html',{'text':text})
 

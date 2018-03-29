@@ -7,4 +7,5 @@ class Scan(models.Model):
     name = models.CharField(max_length=255)
     image = models.ImageField(upload_to='images/')
     datestamp = models.DateTimeField()
+    language = models.CharField(max_length=255)
    

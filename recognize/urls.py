@@ -23,7 +23,6 @@ urlpatterns = [
     path('',upload.views.home,name = 'home'),
     path('about/',upload.views.about,name = 'about'),
     path('upload/',upload.views.scan,name='scan'),
-    path('editor/',upload.views.editor,name='editor'),
 ]
 
 
