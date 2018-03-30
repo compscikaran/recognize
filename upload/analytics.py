@@ -16,4 +16,3 @@ def malevsfemale():
     plt.show()
 
         
-    
