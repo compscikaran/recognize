@@ -1,6 +1,45 @@
 {% extends 'base.html' %}
 {% block content %}
-<h1>Text:</h1>
-<p>{{ ret }}</p>    
+<div style="width: 900px; height: 200px">
+ <link href="https://cdn.quilljs.com/1.0.0/quill.snow.css" rel="stylesheet">
+    <!-- Bootstrap core CSS -->
+ 
+<div id="toolbar">
+  <button class="ql-bold">Bold</button>
+  <button class="ql-italic">Italic</button>
+  <button class="ql-underline">Underline</button>
+  <button class="ql-blockquote">BlockQupte</button>
+ <button class="ql-code-block ql-active">Code Block</button>
+ <button type="button" class="ql-list" value="ordered">List</button>
+ <button type="button" class="ql-list" value="bullet">List</button>
+ <button type="button" class="ql-script" value="sub">Sub</button>
+ <button type="button" class="ql-script" value="super">Super</button>
+  <button type="button" class="ql-indent" value="-1">Left indent</button>
+ <button type="button" class="ql-indent" value="+1">Right Indent</button>
+ <button type="button" class="ql-direction" value="rt1">Right Indent</button>
+<span class="ql-formats"><span class="ql-size ql-picker"><span class="ql-picker-label"><svg viewBox="0 0 18 18"> <polygon class="ql-stroke" points="7 11 9 13 11 11 7 11"></polygon> <polygon class="ql-stroke" points="7 7 9 5 11 7 7 7"></polygon> </svg></span><span class="ql-picker-options"><span class="ql-picker-item" data-value="small"></span><span class="ql-picker-item"></span><span class="ql-picker-item" data-value="large"></span><span class="ql-picker-item" data-value="huge"></span></span></span><select class="ql-size" style="display: none;"><option value="small"></option><option selected="selected"></option><option value="large"></option><option value="huge"></option></select></span>
+<span class="ql-font ql-picker"><span class="ql-picker-label"><svg viewBox="0 0 18 18"> <polygon class="ql-stroke" points="7 11 9 13 11 11 7 11"></polygon> <polygon class="ql-stroke" points="7 7 9 5 11 7 7 7"></polygon> </svg></span><span class="ql-picker-options"><span class="ql-picker-item"></span><span class="ql-picker-item" data-value="serif"></span><span class="ql-picker-item" data-value="monospace"></span></span></span>
+<button type="button" class="ql-link">Link</button>
+</div>
+<div>
+<div id="editor">
+  <p>{{ data|safe }}</p>
+</div>
+</div>
+<div style="display:inline-block;">
+    <img src="{{ link|safe }}">
+</div>
+ 
+</div>
+<script src="https://cdn.quilljs.com/1.0.0/quill.js"></script>
+
+<script>
+  var editor = new Quill('#editor', {
+    modules: { toolbar: '#toolbar' },
+    theme: 'snow',
+
+  });
+</script> 
 
 {% endblock %}
+

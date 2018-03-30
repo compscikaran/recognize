@@ -24,6 +24,6 @@ urlpatterns = [
     path('about/',upload.views.about,name = 'about'),
     path('upload/',upload.views.scan,name='scan'),
     path('verify/',upload.views.verify,name='verify'),
-]
+] + static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
 
 

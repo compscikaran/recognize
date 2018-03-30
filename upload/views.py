@@ -5,7 +5,7 @@ from .models import Scan,BlockModel
 from .tessfuncs import getImage,imageText
 import os
 from .chain import last_block,verify_block_exists,verify_chain
-
+from django.contrib.auth import login, authenticate
 # Create your views here.
 def home(request):
     return render(request,'base.html')
@@ -29,7 +29,9 @@ def scan(request):
             block.previous_hash = last_block().block_hash
             block.block_hash = block.hash_block()
             block.save()
-            return render(request,'editor.html',{'ret':text})
+            link = scan.image.url
+
+            return render(request,'editor.html',{'data': text.replace("\n","<br>"),'link': link})
         else:
             return render(request,'scan.html',{'error': 'All fields are required'})    
     else:
