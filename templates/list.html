@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Documents:</h1>
+<table>
+        <tr>
+                <th style="border: 1px solid #dddddd;padding-left:50px;padding-right:50px;">Title</th>&nbsp;&nbsp;&nbsp;
+                <th style="border: 1px solid #dddddd;padding-left:50px;padding-right:50px;">Image</th>&nbsp;&nbsp;&nbsp;
+        </tr>
+       
+    {% for scan in scans %}
+
+        <tr> 
+           <td style="border: 1px solid #dddddd;padding-left:50px;padding-right:50px;">{{ scan.name }} </td>&nbsp;&nbsp;&nbsp;
+           <td style="border: 1px solid #dddddd;padding-left:50px;padding-right:50px;"><a href="{{ scan.image.url }}">Link</a><td>&nbsp;&nbsp;&nbsp;
+       </tr>
+    {% endfor %}
+</table>
+{% endblock %}

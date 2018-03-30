@@ -10,7 +10,7 @@ from django.contrib.auth.models import User
 
 # Create your views here.
 def home(request):
-    return render(request,'home.html')
+    return render(request,'base.html')
 
 def about(request):
     return render(request,'about.html')
@@ -36,7 +36,7 @@ def scan(request):
             block.save()
             link = scan.image.url
 
-            return render(request,'editor.html',{'data': text.replace("\n","<br>"),'link': link})
+            return render(request,'editor.html',{'data': text.replace("\n","<br>"),'link': link,'heading': scan.name})
         else:
             return render(request,'scan.html',{'error': 'All fields are required'})    
     else:
@@ -95,3 +95,17 @@ def loginuser(request):
 def signoutuser(request):
     logout(request)
     return render(request,'base.html')
+
+def search(request):
+    docs = []
+    if request.method == 'POST':
+        if request.POST['keyword'] and request.POST['type']:
+            for scan in Scan.objects.all():
+                if request.POST['keyword'] in scan.text:
+                    docs.append(scan)
+                    print(docs)
+            return render(request,'list.html',{'scans':docs})
+        else:
+            return render(request,'search.html')
+    else:
+        return render(request,'search.html') 

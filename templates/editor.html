@@ -3,8 +3,11 @@
 <div style="width: 900px; height: 200px">
  <link href="https://cdn.quilljs.com/1.0.0/quill.snow.css" rel="stylesheet">
     <!-- Bootstrap core CSS -->
- 
-<div id="toolbar">
+    <div class="row">
+        <div class="col-md-8"><button class="btn btn-outline-primary btn-lg btn-block disabled" style="width:600px" >{{ heading }}</button></div>
+          <div class="col-md-4"><button class="btn btn-outline-primary btn-lg btn-block disabled" style="width: 550px">Original File</button></div>
+      </div>
+<div id="toolbar" class="d1" style="width: 600px; float: left;">
   <button class="ql-bold">Bold</button>
   <button class="ql-italic">Italic</button>
   <button class="ql-underline">Underline</button>
@@ -23,14 +26,17 @@
 <button type="button" class="ql-link">Link</button>
 </div>
 <div>
-<div id="editor">
+<div id="editor" class="word-content" style="width: 600px;height: 500px; float: left">
   <p>{{ data|safe }}</p>
 </div>
 </div>
-<div style="display:inline-block;">
+<div class="d2" style="width: 50px; float: left;display: inline;">
     <img src="{{ link|safe }}">
 </div>
-<button id="convert">Download</button>
+<div class="row" style="height:600px;"></div>
+<div class="row">
+  <button class="btn btn-primary btn-lg btn-block" style="width: 500px">Save Text File</button>
+  </div>
 </div>
 <script src="https://cdn.quilljs.com/1.0.0/quill.js"></script>
 
@@ -59,4 +65,3 @@ document.getElementById('convert').addEventListener('click', function(e) {
 });
 </script> -->
 {% endblock %}
-

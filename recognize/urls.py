@@ -26,7 +26,8 @@ urlpatterns = [
     path('verify/',upload.views.verify,name='verify'),
     path('register/',upload.views.registeruser,name='register'),
     path('login/',upload.views.loginuser,name='login'),
-    path('signout/',upload.views.signoutuser,name='signout')
+    path('signout/',upload.views.signoutuser,name='signout'),
+    path('search/',upload.views.search,name='search'),
 ] + static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
 
 
