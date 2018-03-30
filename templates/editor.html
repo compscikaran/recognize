@@ -17,6 +17,7 @@
   <button type="button" class="ql-indent" value="-1">Left indent</button>
  <button type="button" class="ql-indent" value="+1">Right Indent</button>
  <button type="button" class="ql-direction" value="rt1">Right Indent</button>
+ <button type="button" class="ql-image" value="img">Image</button>
 <span class="ql-formats"><span class="ql-size ql-picker"><span class="ql-picker-label"><svg viewBox="0 0 18 18"> <polygon class="ql-stroke" points="7 11 9 13 11 11 7 11"></polygon> <polygon class="ql-stroke" points="7 7 9 5 11 7 7 7"></polygon> </svg></span><span class="ql-picker-options"><span class="ql-picker-item" data-value="small"></span><span class="ql-picker-item"></span><span class="ql-picker-item" data-value="large"></span><span class="ql-picker-item" data-value="huge"></span></span></span><select class="ql-size" style="display: none;"><option value="small"></option><option selected="selected"></option><option value="large"></option><option value="huge"></option></select></span>
 <span class="ql-font ql-picker"><span class="ql-picker-label"><svg viewBox="0 0 18 18"> <polygon class="ql-stroke" points="7 11 9 13 11 11 7 11"></polygon> <polygon class="ql-stroke" points="7 7 9 5 11 7 7 7"></polygon> </svg></span><span class="ql-picker-options"><span class="ql-picker-item"></span><span class="ql-picker-item" data-value="serif"></span><span class="ql-picker-item" data-value="monospace"></span></span></span>
 <button type="button" class="ql-link">Link</button>
@@ -29,7 +30,7 @@
 <div style="display:inline-block;">
     <img src="{{ link|safe }}">
 </div>
- 
+<button id="convert">Download</button>
 </div>
 <script src="https://cdn.quilljs.com/1.0.0/quill.js"></script>
 
@@ -40,6 +41,22 @@
 
   });
 </script> 
+<!--
+<script>
+document.getElementById('convert').addEventListener('click', function(e) {
+  e.preventDefault();
+  convertImagesToBase64()
+  // for demo purposes only we are using below workaround with getDoc() and manual
+  // HTML string preparation instead of simple calling the .getContent(). Becasue
+  // .getContent() returns HTML string of the original document and not a modified
+  // one whereas getDoc() returns realtime document - exactly what we need.
+  var contentDocument = tinymce.get('editor').getDoc();
+  var content = '<!DOCTYPE html>' + contentDocument.documentElement.innerHTML;
+  var orientation = document.querySelector('.page-orientation input:checked').value;
+  var converted = htmlDocx.asBlob(content, {orientation: orientation});
 
+  saveAs(converted, 'test.docx');
+});
+</script> -->
 {% endblock %}
 

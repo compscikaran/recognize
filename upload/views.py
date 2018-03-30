@@ -21,9 +21,12 @@ def scan(request):
             scan.image = request.FILES['image']
             scan.datestamp = timezone.datetime.now()
             scan.language = request.POST['language']
+            scan.doctype = request.POST['type']
             scan.save()
             image = getImage(os.path.dirname(os.path.dirname(os.path.abspath(__file__))) + scan.image.url)
             text = imageText(image,scan.language)
+            scan.text = text
+            scan.save()
             block = BlockModel()
             block.text = text
             block.previous_hash = last_block().block_hash
