@@ -11,7 +11,8 @@ def next_block(bid):
 def verify_chain():
     for block in BlockModel.objects.all():
         if block != BlockModel.objects.last() and block != BlockModel.objects.first():
-            if block.block_hash != next_block(block.id).previous_hash:
+            nblock = next_block(block.id)
+            if block.block_hash != nblock.previous_hash:
                 return False
         if block != BlockModel.objects.first():    
             if block.block_hash != block.hash_block():

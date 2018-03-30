@@ -2,12 +2,12 @@
 {% block content %}
 
 <div>
-    <h1>Register</h1><br>
+    <h1>Login</h1><br>
     {% if error %}
     <h4 style="color:red;"><i>{{ error }}</i></h4><br>
     {% endif %}
     
-    <form method="POST" action="{% url 'register' %}" enctype="multipart/form-data">
+    <form method="POST" action="{% url 'login' %}">
             {% csrf_token %}
             User Name:<br><br>
             <input type="text" name="username" style="padding-left: 3px" />

@@ -5,7 +5,7 @@ from .models import Scan,BlockModel
 from .tessfuncs import getImage,imageText
 import os
 from .chain import last_block,verify_block_exists,verify_chain
-from django.contrib.auth import login, authenticate
+from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.models import User
 
 # Create your views here.
@@ -63,7 +63,7 @@ def verify(request):
     else:
         return render(request,'verify.html',{'error': 'All fields are required'})       
 
-def register(request):
+def registeruser(request):
     if request.method == 'POST':
         if request.POST['username'] and request.POST['email'] and request.POST['password']:
             username = request.POST['username']
@@ -71,16 +71,17 @@ def register(request):
             password = request.POST['password']
             user = User.objects.create_user(username,email,password)
             user.save()
+            login(request,user)
             return render(request,'base.html')
         else:
             return render(request,'register.html',{'error':'Fill in all the fields'})
     else:
         return render(request,'register.html')
 
-def login(request):
+def loginuser(request):
     if request.method == 'POST':
         if request.POST['username'] and request.POST['email'] and request.POST['password']:
-            user = authenticate(request.POST['username'],request.POST['email'],request.POST['password'])
+            user = authenticate(username = request.POST['username'],email = request.POST['email'],password = request.POST['password'])
             if user is not None:
                 login(request,user)
                 return render(request,'base.html')
@@ -90,3 +91,7 @@ def login(request):
             return render(request,'login.html',{'error':'Fill in all the fields'})
     else:
         return render(request,'login.html')
+
+def signoutuser(request):
+    logout(request)
+    return render(request,'base.html')

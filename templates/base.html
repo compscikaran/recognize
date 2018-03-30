@@ -72,8 +72,28 @@
             <a class="nav-link" href="{% url 'scan' %}"  style="padding-left:50px; color: white">Upload</a>
           </li>
           <li class="nav-item">
+            <a class="nav-link" href="{% url 'verify' %}"  style="padding-left:50px; color: white">Verify</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'register' %}"  style="padding-left:50px; color: white">Register</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'login' %}"  style="padding-left:50px; color: white">Login</a>
+          </li>
+          <li class="nav-item">
             <a class="nav-link disabled" href="{% url 'about' %}" style="padding-left: 50px; color: white">About Us</a>
           </li>
+          <li class="nav-item" style="color:white;text-align:right;padding-left:50px;padding-top:5px;">
+            {% if user.is_authenticated %} 
+            <h5>Signed In</h5>
+            {% else %}
+            <h5>Guest</h5>
+            {% endif %}
+          </li>
+          <li class="nav-item">
+            <a class="nav-link disabled" href="{% url 'signout' %}" style="padding-left: 50px; color: white">Sign Out</a>
+          </li>
+          
         <!--
           <li >
           <div class="dropdown">
