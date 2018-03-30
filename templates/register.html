@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div>
+    <h1>Register</h1><br>
+    {% if error %}
+    <h4 style="color:red;"><i>{{ error }}</i></h4><br>
+    {% endif %}
+    
+    <form method="POST" action="{% url 'register' %}" enctype="multipart/form-data">
+            {% csrf_token %}
+            User Name:<br><br>
+            <input type="text" name="username" style="padding-left: 3px" />
+            <br/>
+            <br/>
+            Email:<br><br>
+            <input type="text" name="email" style="padding-left: 3px" />
+            <br/>
+            <br/>
+            Password:<br><br> 
+            <input type="password" name="password" style="padding-left:3px" />
+            <br />
+            <br />
+            <button type="submit" class="btn btn-primary"/>Submit</button>
+        </form>
+    
+</div>
+{% endblock %}
