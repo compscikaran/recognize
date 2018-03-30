@@ -1,9 +1,11 @@
 from django.shortcuts import render,redirect
 from django.utils import timezone
 from django.contrib.auth.decorators import login_required
-from .models import Scan
+from .models import Scan,BlockModel
 from .tessfuncs import getImage,imageText
 import os
+from .chain import last_block,verify_block_exists,verify_chain
+
 # Create your views here.
 def home(request):
     return render(request,'base.html')
@@ -22,9 +24,34 @@ def scan(request):
             scan.save()
             image = getImage(os.path.dirname(os.path.dirname(os.path.abspath(__file__))) + scan.image.url)
             text = imageText(image,scan.language)
+            block = BlockModel()
+            block.text = text
+            block.previous_hash = last_block().block_hash
+            block.block_hash = block.hash_block()
+            block.save()
             return render(request,'editor.html',{'ret':text})
         else:
             return render(request,'scan.html',{'error': 'All fields are required'})    
     else:
         return render(request,'scan.html')
 
+def verify(request):
+    if request.method == 'POST':
+        scan = Scan()
+        scan.name = request.POST['name']
+        scan.image = request.FILES['image']
+        scan.datestamp = timezone.datetime.now()
+        scan.language = request.POST['language']
+        scan.save()
+        image = getImage(os.path.dirname(os.path.dirname(os.path.abspath(__file__))) + scan.image.url)
+        text = imageText(image,scan.language)
+        for blocki in BlockModel.objects.all():
+            bl = BlockModel(0,text,blocki.previous_hash)
+            bl.block_hash = bl.hash_block()
+            for blockj in BlockModel.objects.all():
+                if blockj.block_hash == bl.block_hash:
+                    if verify_chain():
+                        return render(request,'result.html',{'val':'Document Verified'})
+        return render(request,'result.html',{'val':'Document Not Verified'})
+    else:
+        return render(request,'verify.html',{'error': 'All fields are required'})       

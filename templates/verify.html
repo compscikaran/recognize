@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div>
+    <h1>Upload Image</h1><br>
+    {% if error %}
+    <h4 style="color:red;"><i>{{ error }}</i></h4><br>
+    {% endif %}
+    
+    <form method="POST" action="{% url 'verify' %}" enctype="multipart/form-data">
+            {% csrf_token %}
+            Name:<br><br>
+            <input type="text" name="name" style="padding-left: 3px" />
+            <br/>
+            <br/>
+            Language( Enter eng or tam ):<br><br> 
+            <input type="text" name="language" id="language"  />
+             <br/>
+             <br/>
+            Upload File:<br><br>
+            <input type="file" name="image" id="fileUpload"  />
+             <br/>
+             <br/>
+            <input type="submit" name="submit"/>
+    </form>
+</div>
+{% endblock %}

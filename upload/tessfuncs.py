@@ -9,4 +9,4 @@ def getImage(input_path):
     
 def imageText(input_image,language):
     output_text = pytesseract.image_to_string(Image.fromarray(input_image), lang=language)
-    return output_text221m9
+    return output_text
