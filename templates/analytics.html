@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block content %}
+<div>
+    <form method="POST" action="{% url 'analytics' %}" enctype="multipart/form-data">
+                {% csrf_token %}
+                Type of Document:<br><br>
+                <select name="type">
+                    <option value="mvf">Male Vs Female Classification</option>
+                    <option value="lfc">Average Life Expectancy Grouped by City</option>
+                    <option value="lfg">Average Life Expectancy Grouped by Gender</option>
+                    <option value="">Others</option>
+                </select>
+                <br/>
+                <br/>   
+                <button type="submit" class="btn btn-primary"/>Submit</button>
+        </form>
+    </div>
+{% endblock %}

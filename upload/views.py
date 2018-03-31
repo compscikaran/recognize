@@ -111,7 +111,16 @@ def search(request):
         return render(request,'search.html') 
 
 def analytics(request):
-    malevsfemale()
-    life_expectency_vs_city()
-    life_expectency_vs_gender()
-    return render(request,'base.html')
+    if request.method == 'POST':
+        if request.POST['type']:
+            if request.POST['type'] == 'mvf':
+                malevsfemale()
+            elif request.POST['type'] == 'lfg':
+                life_expectency_vs_gender()
+            elif request.POST['type'] == 'lfc':
+                life_expectency_vs_city()
+            else:
+                return render(request,'analytics.html')
+            return render(request,'analytics.html')
+    else:
+        return render(request,'analytics.html')
