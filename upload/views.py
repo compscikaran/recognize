@@ -7,7 +7,7 @@ import os
 from .chain import last_block,verify_block_exists,verify_chain
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.models import User
-from .analytics import malevsfemale
+from .analytics import malevsfemale, life_expectency_vs_city, life_expectency_vs_gender
 # Create your views here.
 def home(request):
     return render(request,'base.html')
@@ -112,4 +112,6 @@ def search(request):
 
 def analytics(request):
     malevsfemale()
+    life_expectency_vs_city()
+    life_expectency_vs_gender()
     return render(request,'base.html')
