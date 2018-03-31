@@ -34,14 +34,16 @@
 <div class="d2" style="width: 50px; float: left;display: inline;">
     <img src="{{ link|safe }}">
 </div>
-
+<div>
+  <a href="javascript.void(0)" class = "convert"></a>
+</div>
 <div class="row" style="height:600px;"></div>
 <div class="row">
   <button class="btn btn-primary btn-lg btn-block" style="width: 500px">Save Text File</button>
   </div>
 </div>
 <script src="https://cdn.quilljs.com/1.0.0/quill.js"></script>
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.5/jspdf.min.js"></script> 
 <script>
   var editor = new Quill('#editor', {
     modules: { toolbar: '#toolbar' },
@@ -49,7 +51,9 @@
 
   });
 </script> 
-
+<script>
+  $("#editor").
+</script>
 
   
 {% endblock %}

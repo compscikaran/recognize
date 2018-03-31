@@ -14,7 +14,8 @@ def home(request):
 
 def about(request):
     return render(request,'about.html')
-@login_required
+
+
 def scan(request):
     if request.method == 'POST':
         if request.POST['name'] and request.FILES['image']:
@@ -42,7 +43,7 @@ def scan(request):
     else:
         return render(request,'scan.html')
 
-@login_required
+
 def verify(request):
     if request.method == 'POST':
         scan = Scan()
@@ -97,7 +98,7 @@ def signoutuser(request):
     logout(request)
     return render(request,'base.html')
 
-@login_required
+
 def search(request):
     docs = []
     if request.method == 'POST':
@@ -112,7 +113,6 @@ def search(request):
     else:
         return render(request,'search.html') 
 
-@login_required
 def analytics(request):
     if request.method == 'POST':
         if request.POST['type']:
