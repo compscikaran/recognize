@@ -35,11 +35,11 @@
     <img src="{{ link|safe }}">
 </div>
 <div>
-  <a href="javascript.void(0)" class = "convert"></a>
+ 
 </div>
 <div class="row" style="height:600px;"></div>
 <div class="row">
-  <button class="btn btn-primary btn-lg btn-block" style="width: 500px">Save Text File</button>
+  <button class="btn btn-primary" style="width: 500px" onclick="OnConvert()" >Save Text File</button>
   </div>
 </div>
 <script src="https://cdn.quilljs.com/1.0.0/quill.js"></script>
@@ -52,7 +52,16 @@
   });
 </script> 
 <script>
-  $("#editor").
+  function OnConvert() {
+  var pdf = new jsPDF('p', 'pt', 'letter');
+  pdf.canvas.height = 72 * 11;
+  pdf.canvas.width = 72 * 8.5;
+
+  pdf.fromHTML(document.getElementById("editor").innerHTML);
+
+  pdf.save('doc.pdf');
+};
+
 </script>
 
   
