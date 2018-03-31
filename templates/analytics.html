@@ -1,9 +1,10 @@
 {% extends 'base.html' %}
 {% block content %}
 <div>
+        <h1>Select Metric :</h1><br><br>
     <form method="POST" action="{% url 'analytics' %}" enctype="multipart/form-data">
                 {% csrf_token %}
-                Type of Document:<br><br>
+                
                 <select name="type">
                     <option value="mvf">Male Vs Female Classification</option>
                     <option value="lfc">Average Life Expectancy Grouped by City</option>

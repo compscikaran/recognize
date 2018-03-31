@@ -1,7 +1,12 @@
 {% extends 'base.html' %}
 {% block content %}
-
-<div>
+<style>
+        .container{
+            padding-left:380px;
+            padding-right: 250px;
+        }
+    </style>
+<div class="container">
     <h1>Register</h1><br>
     {% if error %}
     <h4 style="color:red;"><i>{{ error }}</i></h4><br>

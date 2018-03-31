@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
+{% load static %}
 <div style="width: 900px; height: 200px">
  <link href="https://cdn.quilljs.com/1.0.0/quill.snow.css" rel="stylesheet">
     <!-- Bootstrap core CSS -->
@@ -33,13 +34,17 @@
 <div class="d2" style="width: 50px; float: left;display: inline;">
     <img src="{{ link|safe }}">
 </div>
+<div>
+  <a class="word-export" href="javascript:void(0)">Export</a>
+</div>
 <div class="row" style="height:600px;"></div>
 <div class="row">
   <button class="btn btn-primary btn-lg btn-block" style="width: 500px">Save Text File</button>
   </div>
 </div>
 <script src="https://cdn.quilljs.com/1.0.0/quill.js"></script>
-
+<script src="{% static 'FileSaver.js' %}"></script>
+<script src="{% static 'jquery.wordexport.js' %}"></script>
 <script>
   var editor = new Quill('#editor', {
     modules: { toolbar: '#toolbar' },
@@ -47,21 +52,13 @@
 
   });
 </script> 
-<!--
-<script>
-document.getElementById('convert').addEventListener('click', function(e) {
-  e.preventDefault();
-  convertImagesToBase64()
-  // for demo purposes only we are using below workaround with getDoc() and manual
-  // HTML string preparation instead of simple calling the .getContent(). Becasue
-  // .getContent() returns HTML string of the original document and not a modified
-  // one whereas getDoc() returns realtime document - exactly what we need.
-  var contentDocument = tinymce.get('editor').getDoc();
-  var content = '<!DOCTYPE html>' + contentDocument.documentElement.innerHTML;
-  var orientation = document.querySelector('.page-orientation input:checked').value;
-  var converted = htmlDocx.asBlob(content, {orientation: orientation});
 
-  saveAs(converted, 'test.docx');
-});
-</script> -->
+<script type="text/javascript">
+  jQuery(document).ready(function($) {
+    $("a.word-export").click(function(event) {
+      $("#editor").wordExport();
+    });
+  });
+  </script>
+  
 {% endblock %}

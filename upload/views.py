@@ -10,7 +10,7 @@ from django.contrib.auth.models import User
 from .analytics import malevsfemale, life_expectency_vs_city, life_expectency_vs_gender
 # Create your views here.
 def home(request):
-    return render(request,'base.html')
+    return render(request,'home.html')
 
 def about(request):
     return render(request,'about.html')

@@ -1,8 +1,13 @@
 {% extends 'base.html' %}
 {% block content %}
-
-<div>
-    <h1>Upload Image</h1><br>
+<style>
+        .container{
+            padding-left:380px;
+            padding-right: 250px;
+        }
+    </style>
+<div class="container">
+    <h1>Verify Image</h1><br>
     {% if error %}
     <h4 style="color:red;"><i>{{ error }}</i></h4><br>
     {% endif %}
