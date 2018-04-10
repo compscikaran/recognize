@@ -5,3 +5,4 @@
 /media
 __pychache__/
 db.sqlite3
+sqlite3.db
