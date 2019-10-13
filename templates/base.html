@@ -10,10 +10,8 @@
 
     <title>Recognize</title>
    
-    <link href="{% static "bootstrap.css" %}" rel="stylesheet">
+    <link href="https://stackpath.bootstrapcdn.com/bootswatch/4.3.1/cosmo/bootstrap.min.css" rel="stylesheet" integrity="sha384-uhut8PejFZO8994oEgm/ZfAv0mW1/b83nczZzSwElbeILxwkN491YQXsCFTE6+nx" crossorigin="anonymous">
 
-    <!-- Custom styles for this template -->
-    <link href="{% static "starter-template.css" %}" rel="stylesheet">
     <style type="text/css">
       
 .dropbtn {
@@ -81,7 +79,7 @@
             <a class="nav-link" href="{% url 'login' %}"  style="padding-left:50px; color: white">Login</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link disabled" href="{% url 'about' %}" style="padding-left: 50px; color: white">About Us</a>
+            <a class="nav-link " href="{% url 'about' %}" style="padding-left: 50px; color: white">About Us</a>
           </li>
           <li class="nav-item" style="color:white;text-align:right;padding-left:50px;padding-top:5px;">
             {% if user.is_authenticated %} 
@@ -91,13 +89,13 @@
             {% endif %}
           </li>
           <li class="nav-item">
-            <a class="nav-link disabled" href="{% url 'signout' %}" style="padding-left: 50px; color: white">Sign Out</a>
+            <a class="nav-link " href="{% url 'signout' %}" style="padding-left: 50px; color: white">Sign Out</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link disabled" href="{% url 'search' %}" style="padding-left: 50px; color: white">Search</a>
+            <a class="nav-link" href="{% url 'search' %}" style="padding-left: 50px; color: white">Search</a>
           </li>
           <li class="nav-item">
-              <a class="nav-link disabled" href="{% url 'analytics' %}" style="padding-left: 50px; color: white">Analytics</a>
+              <a class="nav-link" href="{% url 'analytics' %}" style="padding-left: 50px; color: white">Analytics</a>
             </li>
           
         </ul>
@@ -109,15 +107,9 @@
         {% endblock %}
       </div>  
     </div>
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="{% static "jquery-3.2.1.slim.min.js" %}" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-   <!--
-    <script>window.jQuery || document.write('<script src="../../../../assets/js/vendor/jquery-slim.min.js"></script>')</script>
-   -->
-    <script src="{% static "popper.min.js" %}"></script>
-    <script src="{% static "bootstrap.min.js" %}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.slim.min.js" integrity="sha256-pasqAKBDmFT4eHoN2ndd6lN370kFiGUFyTiUHWhU7k8=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.15.0/esm/popper.min.js" integrity="sha256-3Iu0zFU6cPS92RSC3Pe4DBwjIV/9XKyzYTqKZzly6A8=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha256-CjSoeELFOcH0/uxWu6mC/Vlrc1AARqbm/jiiImDGV3s=" crossorigin="anonymous"></script>
   
 
 </body>

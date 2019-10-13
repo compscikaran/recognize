@@ -18,7 +18,7 @@ This is the main repository for this project. Below are the steps for setting up
 
 6. install necessary packages 
 
-    pip install -r requirements.txt
+    pip install django pillow opencv-python matplotlib numpy pytesseract
 
 7. Apply migrations to database 
 
